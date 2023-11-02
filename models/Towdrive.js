@@ -1,0 +1,62 @@
+const mongoose = require("mongoose");
+
+const towdriveSchema = new mongoose.Schema({
+  dispnumdrv: Number,
+  invoicenum: { type: String, maxlength: 10 },
+  towtagnum: { type: String, maxlength: 10 },
+  trucknum: { type: String, maxlength: 4 },
+  timerec: { type: String, maxlength: 5 },
+  timecall: { type: String, maxlength: 5 },
+  timeinrt: { type: String, maxlength: 5 },
+  timearrive: { type: String, maxlength: 5 },
+  timeintow: { type: String, maxlength: 5 },
+  timeardst: { type: String, maxlength: 5 },
+  timeclear: { type: String, maxlength: 5 },
+  timeeta: Date,
+  startmile: Number,
+  endmile: Number,
+  compercent: { type: mongoose.Decimal128, max: 999999.99 },
+  commision: Boolean,
+  creationda: Date,
+  computer_n: { type: String, maxlength: 50 },
+  last_edit: Date,
+  whenappend: Date,
+  geotrka: { type: String, maxlength: 15 },
+  geotrkb: { type: String, maxlength: 15 },
+  drvcnt: Number,
+  editbywho: { type: String, maxlength: 14 },
+  drawer: Number,
+  enterbywho: { type: String, maxlength: 14 },
+  mileage1: { type: mongoose.Decimal128, max: 99999.9 },
+  mileage2: { type: mongoose.Decimal128, max: 99999.9 },
+  mileage3: { type: mongoose.Decimal128, max: 99999.9 },
+  history: Boolean,
+  foxtow_id: { type: String, maxlength: 10 },
+  datesent: Date,
+  sentstatus: { type: String, maxlength: 20 },
+  batch: Number,
+  directions: String,
+  subcontrac: { type: String, maxlength: 20 },
+  fleet_num: { type: String, maxlength: 10 },
+  readytogo: Boolean,
+  locked: Boolean,
+  dispinv2: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Towinv",
+    required: false,
+  },
+  driver: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Driver",
+    required: false,
+  },
+  towmast: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Towmast",
+    required: false,
+  },
+});
+
+const Towdrive = mongoose.model("Towdrive", towdriveSchema);
+
+module.exports = Towdrive;
